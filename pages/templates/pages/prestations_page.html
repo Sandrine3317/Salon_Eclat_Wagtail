@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}template-prestationspage{% endblock %}
 
@@ -8,28 +8,15 @@
 <h1>{{ page.title }}</h1>
 
 <img class="page-image" src="{% static 'images/prestations.jpg' %}" alt="Une prestation en cours au Salon Éclat">
-
+{{ page.introduction|richtext }}
 <ul class="prestations-list">
+    {% for prestation in page.prestations.all %}
     <li>
-        <h2>Coupe femme</h2>
-        <p>Diagnostic, coupe personnalisée et brushing inclus.</p>
-        <span class="prix">35 €</span>
+        <h2>{{ prestation.nom }}</h2>
+        <p>{{ prestation.description }}</p>
+        <span class="prix">{{ prestation.prix}} €</span>
     </li>
-    <li>
-        <h2>Coupe homme</h2>
-        <p>Coupe classique ou tendance, finitions à la tondeuse.</p>
-        <span class="prix">25 €</span>
-    </li>
-    <li>
-        <h2>Coloration</h2>
-        <p>Coloration complète, avec soin ravivant inclus.</p>
-        <span class="prix">60 €</span>
-    </li>
-    <li>
-        <h2>Brushing</h2>
-        <p>Mise en forme et brillance pour une occasion spéciale.</p>
-        <span class="prix">20 €</span>
-    </li>
+    {% endfor %}
 </ul>
 
 {% endblock content %}

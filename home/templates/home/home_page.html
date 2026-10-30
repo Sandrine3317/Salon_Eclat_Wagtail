@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load static %}
+
+{% load static wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -8,16 +9,10 @@
 <img class="hero-image" src="{% static 'images/facade.jpg' %}" alt="Façade du Salon Éclat">
 
 <section class="hero">
-    <h1>Bienvenue au Salon Éclat</h1>
-    <p>
-        Depuis plus de 10 ans, le Salon Éclat accueille les habitant·e·s du quartier
-        pour prendre soin de leurs cheveux dans une ambiance chaleureuse et conviviale.
-        Coupes, couleurs, soins : notre équipe met son savoir-faire à votre service.
-    </p>
-    <p>
-        Découvrez nos prestations, rencontrez notre équipe, ou contactez-nous directement
-        pour prendre rendez-vous.
-    </p>
+    <h1>{{ page.accroche }}</h1>
+
+    {{ page.presentation|richtext }}
+    
 </section>
 
 {% endblock content %}
